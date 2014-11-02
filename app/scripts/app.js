@@ -18,7 +18,7 @@ var qsapp = angular
         'ngTouch',
         /*'qsLink'*/
     ])
-    .config(function ($routeProvider) {
+    .config(['$routeProvider',function ($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/compare.html',
@@ -27,7 +27,7 @@ var qsapp = angular
             .otherwise({
                 redirectTo: '/'
             });
-    });
+    }]);
 qsapp.factory('aService', function ($rootScope) {
     var scope = $rootScope.$new(true);
     scope.links = [];
