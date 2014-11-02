@@ -1,0 +1,109 @@
+<div ng-controller="QsCompareCtrl as compCtrl">
+    <div ng-controller="LinkController as linkCtrl">
+        <form role="form" class="form-horizontal" ng-submit="linkCtrl.addLink(compCtrl)">
+            <div class="">
+                <div class="form-group">
+                    <label for="LinkInput" class="col-md-2 control-label">Your Link</label>
+
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" ng-model="linkCtrl.link.url" id="LinkInput"
+                               placeholder="Enter your link">
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="inputVariable" class="col-md-2 control-label">variable sep.</label>
+
+                    <div class="col-md-2">
+                        <input type="text" ng-model="linkCtrl.link.variableSeparator" class="form-control col-md-2"
+                               id="inputVariable"
+                               value="&">
+                    </div>
+                    <label for="inputValue" class="col-md-2 control-label">key/val sep.</label>
+
+                    <div class="col-md-2">
+                        <input type="text" ng-model="linkCtrl.link.valueSeparator" class="form-control" id="inputValue"
+                               value="=">
+                    </div>
+
+
+                    <label for="inputQs" class="col-md-2 control-label">query sep.</label>
+
+                    <div class="col-md-2">
+                        <input type="text" ng-model="linkCtrl.link.qsSeparator" class="form-control" id="inputQs"
+                               value="=">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <label>
+
+                                <input type="checkbox" ng-model="linkCtrl.link.parseHash"
+                                       id="inputHash">Parse hash
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Add to compare</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <div class="share-container" social-btns="">
+        </div>
+    </div>
+    <section ng-if="compCtrl.links.length" class="col-md-12">
+        <h3>Your links</h3>
+        <ol>
+            <li ng-repeat="l in compCtrl.links">{{l.originalUrl}} <span ng-click="compCtrl.removeLink(l)"
+                                                                        class="glyphicon glyphicon-remove"></span></li>
+        </ol>
+
+        <h4>Legend:</h4>
+        <table class="table col-md-3">
+            <tr>Value "-[empty]-" is set if the variable did not have the value.</tr>
+            <tr class="bg-success">
+                <td>Variables are the same</td>
+            </tr>
+            <tr class="bg-warning">
+                <td>Parsing error</td>
+            </tr>
+        </table>
+        <h4>Your Results</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th ng-repeat="th in compCtrl.links">
+                    {{th.host}}
+                    <a href="{{th.url}}">[{{$index+1}}]</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(key,value) in compCtrl.keys"
+                ng-class="{'bg-success':value.same&&value.data.length>1, 'bg-warning':value.warn}">
+                <td>{{key}}</td>
+                <td ng-repeat="v in value.data track by $index">
+                    {{v}}
+                </td>
+            </tr>
+            <tr>
+                <th>&nbsp;Hash</th>
+                <th ng-repeat="th in compCtrl.links">
+                    {{th.hash}}
+                </th>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+</div>
