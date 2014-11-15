@@ -1,6 +1,6 @@
 'use strict';
 
-describe('LinkCtrl', function () {
+describe('LinkController', function () {
 
     // load the controller's module
     beforeEach(module('queryStringApp'));
