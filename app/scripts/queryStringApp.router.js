@@ -11,7 +11,13 @@
         $routeProvider
             .when('/', {
                 templateUrl: 'views/compare.html',
-                controller: 'QsCompareController'
+                controller: 'QsCompareController',
+                controllerAs: 'compCtrl'
+            })
+            .when('/:compareResult', {
+                templateUrl: 'views/compare.html',
+                controller: 'QsCompareController',
+                controllerAs: 'compCtrl'
             })
             .otherwise({
                 redirectTo: '/'

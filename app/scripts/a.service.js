@@ -8,6 +8,8 @@
         .factory('aService', aService);
 
     function aService($rootScope) {
+        console.log('aService init');
+
         var scope = $rootScope.$new(true);
         scope.links = [];
         return scope;

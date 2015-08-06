@@ -8,21 +8,32 @@
  * Controller of the queryStringApp
  */
 angular.module('queryStringApp')
-    .controller('QsCompareController', ['$scope', 'aService', function ($scope, aServiece) {
+    .controller('QsCompareController', ['$scope', 'aService', 'base64Service', '$location', '$anchorScroll', function ($scope, aServiece, base64Service, $location, $anchorScroll) {
         /* jshint validthis: true */
         var vm = this;
 
-        vm.links = aServiece.links;
-        vm.addLink = function (link) {
-            vm.links.push(link);
-            vm.compareLinks();
-        };
+        vm.addLink = addLink;
+        vm.compareLinks = compareLinks;
         vm.keys = [];
+        vm.links = aServiece.links;
+        vm.linksBase = '';
+        vm.removeLink = removeLink;
 
-        vm.compareLinks = function () {
+        activate();
+
+
+        function addLink(link) {
+            vm.links.push(link);
+            updateBase();
+            vm.compareLinks();
+            $location.hash('results');
+            $anchorScroll();
+        }
+
+        function compareLinks() {
             var allKeys = {};
 
-            vm.links.forEach(function (link) {
+                vm.links.forEach(function (link) {
                 Object.keys(link.queryString).map(function (key) {
                     allKeys[key] = {same: false, data: []};
                 });
@@ -43,15 +54,51 @@ angular.module('queryStringApp')
                     return element === '-[warn]-';
                 });
             });
-            console.log(vm.keys);
-        };
-        vm.removeLink = function (link) {
+        }
+
+        function removeLink(link) {
             vm.links = vm.links.filter(function (e) {
                 return e !== link;
             });
             vm.compareLinks();
-        };
+            updateBase();
+        }
 
-    }]);
+        function updateBase() {
+
+            console.log(JSON.stringify(vm.links.map(function (e) {
+                return e.originalUrl;
+            })));
+            console.log(base64Service.encode(JSON.stringify(vm.links.map(function (e) {
+                return e.originalUrl;
+            }))));
+            console.log(base64Service.decode(base64Service.encode(JSON.stringify(vm.links.map(function (e) {
+                return e.originalUrl;
+            })))));
+            console.log(JSON.parse(base64Service.decode(base64Service.encode(JSON.stringify(vm.links.map(function (e) {
+                return e.originalUrl;
+            }))))));
+
+            vm.linksBase = base64Service.encode(JSON.stringify(vm.links));
+
+            //$location.hash(vm.linksBase);
+
+        }
+
+        function activate() {
+            console.log('activate');
+            var cmpParam = $location.path(), links;
+            cmpParam = cmpParam.substring(1, cmpParam.length);
+            if (cmpParam !== ''){
+                links = JSON.parse(base64Service.decode(cmpParam));
+                console.log(links);
+                links.forEach(function(element){
+                    vm.addLink(element);
+                });
+            }
+        }
+
+        }
+        ]);
 
 
