@@ -25,7 +25,45 @@
     <div class="header">
         <h3 class="text-muted">QueryString.info</h3>
     </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- queryString-leader -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-8831880020519536"
+         data-ad-slot="4053527927"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
     <section>
+        <h2>About Query String Comparator</h2>
+
+        <p>Analyzing long urls, let alone comparing them, can be time consuming, difficult or even frustrating.<br/>
+            Ads configs, tracking urls or even cookie strings it all can come in different order so finding a particular
+            variable value can make you stare for a while until you manage to find it.<br/>
+            <br/>
+            Query String Comparator lets you compare full urls, query strings, hash values etc. by creating a readable
+            table.
+        </p>
+    </section>
+    <section>
+        <h2>How To Use It?</h2>
+        <ol>
+            <li>Copy your link into the box below.</li>
+            <li>Adjust query string, variable and value separators.</li>
+            <li>'Add link to compare' or simply hit enter.</li>
+            <li>Add more links</li>
+            <li>Analyse and share your results.</li>
+        </ol>
+        <p>Click <a href="http://localhost:9000/#/W3sidXJsIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvLnVrL3dlYmhwP3NvdXJjZWlkPWNocm9tZS1pbnN0YW50Jmlvbj0xJmVzcHY9MiZpZT1VVEYtOCIsIm9yaWdpbmFsVXJsIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvLnVrL3dlYmhwP3NvdXJjZWlkPWNocm9tZS1pbnN0YW50Jmlvbj0xJmVzcHY9MiZpZT1VVEYtOCNxPXNpdGU6cXVlcnlzdHJpbmcuaW5mbyIsImhvc3QiOiJodHRwczovL3d3dy5nb29nbGUuY28udWsvd2ViaHAiLCJxdWVyeVN0cmluZyI6eyJzb3VyY2VpZCI6ImNocm9tZS1pbnN0YW50IiwiaW9uIjoiMSIsImVzcHYiOiIyIiwiaWUiOiJVVEYtOCJ9LCJoYXNoIjoicT1zaXRlOnF1ZXJ5c3RyaW5nLmluZm8ifV0">here</a> to see an example (for link: https://www.google.co.uk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=site:querystring.info )</p>
+    </section>
+    <div class="share-container" social-btns=""></div>
+<a id="add"></a>
+    <section>
+        <h2>Compare URLs</h2>
+        <div ng-view=""></div>
+    </section>
+    <section>
+        <br/><br/>
         <h2>URL &amp; Query String</h2>
 
         <p>
@@ -39,33 +77,6 @@
                 href="http://en.wikipedia.org/wiki/Query_string">here</a>
         </p>
     </section>
-    <section>
-        <h2>About Query String Comparator</h2>
-
-        <p>Analyzing long urls, let alone comparing them, can be time consuming, difficult or even frustrating.<br/>
-            Ads configs, tracking urls or even cookie strings it all can come in different order so finding a particular
-            variable value can make you stare for a while until you manage to find it.<br/>
-            <br/>
-            Query String Comparator lets you compare full urls, query strings, hash values etc. by creating a readable
-            table.
-
-        </p>
-    </section>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- queryString-leader -->
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:728px;height:90px"
-         data-ad-client="ca-pub-8831880020519536"
-         data-ad-slot="4053527927"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    <section>
-        <h2>Compare URLs</h2>
-
-        <div ng-view=""></div>
-    </section>
-
     <div class="footer">
 
     </div>
@@ -120,6 +131,7 @@
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/js-base64/base64.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -129,6 +141,7 @@
 <script src="scripts/queryStringApp.module.js"></script>
 <script src="scripts/queryStringApp.router.js"></script>
 <script src="scripts/a.service.js"></script>
+<script src="scripts/base64.service.js"></script>
 <script src="scripts/controllers/qscompare.controller.js"></script>
 <script src="scripts/controllers/link.controller.js"></script>
 <script src="scripts/SocialBtns.directive.js"></script>
